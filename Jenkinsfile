@@ -26,6 +26,17 @@ pipeline {
                 '''
             }
         }
+        
+        stage('Run Container') {
+            steps {
+                sh '''
+                    docker stop flask-app || true
+                    docker rm flask-app || true
+                    docker run -d --name flask-app -p 80:80 my-flask-app
+                    sleep 10
+                '''
+            }
+        }
     }
     
     post {
