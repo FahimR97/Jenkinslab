@@ -37,6 +37,14 @@ pipeline {
                 '''
             }
         }
+        
+        stage('Test Application') {
+            steps {
+                sh '''
+                    python3 test_app.py
+                '''
+            }
+        }
     }
     
     post {
